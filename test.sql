@@ -65,7 +65,7 @@ SELECT * FROM LinkmanInfo WHERE TypeId BETWEEN 101 AND 102;
 SELECT * FROM LinkmanInfo WHERE TypeId IN(101,103);
 SELECT * FROM LinkmanInfo WHERE TypeId NOT IN(101,103);
 -- 9.逻辑运算符
-SELECT * FROM LinkmanInfo WHERE TypeId=101 AND TypeId=102;
+SELECT * FROM LinkmanInfo WHERE TypeId=101 AND Email="qq";
 SELECT * FROM LinkmanInfo WHERE TypeId=101 OR TypeId=102;
 -- 10. 关键字Like
 SELECT * FROM LinkmanInfo WHERE Adress LIKE '湖%';
@@ -73,6 +73,7 @@ SELECT * FROM LinkmanInfo WHERE Adress LIKE '京';
 -- 注: 一个""代表一个字,"%"表示0个或多个字,一般的话查询里面包含这个字的话,前后都要加%;
 -- 11. 排序 order by desc/asc
 SELECT * FROM LinkmanInfo ORDER BY TypeId DESC;
+SELECT * FROM LinkmanInfo ORDER BY TypeId DESC,Age ASC;
 -- 注: 对于字符串的数字也是可以排序的,须确保位数一样,从左到右一位一位进行相比的;
 -- 12.查询结果计算
 SELECT AVG(age) AS 平均年龄,MAX(age) AS 最大年龄,MIN(age) AS 最小年龄,SUM(age) AS 年龄之和 FROM LinkmanInfo;
@@ -85,3 +86,10 @@ SELECT * FROM LinkmanType INNER JOIN LinkmanInfo ON LinkmanType.TypeId=LinkmanIn
 SELECT * FROM LinkmanType t INNER JOIN LinkmanInfo i ON t.TypeId=i.TypeId;
 -- 第三种
 SELECT * FROM LinkmanType,LinkmanInfo WHERE LinkmanType.TypeId=LinkmanInfo.TypeId;
+-- 15.外部连接查询
+-- 以左边为主表
+SELECT * FROM LinkmanType t LEFT JOIN LinkmanInfo i ON t.TypeId=i.TypeId;
+-- 以右边为主表
+SELECT * FROM LinkmanType t RIGHT JOIN LinkmanInfo i ON t.TypeId=i.TypeId;
+-- 16.分组（group by）
+SELECT typeid ,COUNT(*) "该总类人数" FROM LinkmanInfo GROUP BY typeid;
