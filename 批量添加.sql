@@ -6,7 +6,7 @@ BEGIN
     DECLARE i INT DEFAULT 1; #声明变量
     WHILE i <= 10 DO
     insert into LinkmanInfo ( ID,TypeId,Age,L_Name,Adress,Phone,Email)
-    values (i+10, 105,18,CONCAT('zhangsan',i),'江西',88888888,'wx');
+    values (i+30, 105,18,CONCAT('zhangsan',i),'江西',88888888,'wx');
     SET i = i+1;
     END WHILE;
 END $
